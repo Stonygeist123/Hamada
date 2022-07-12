@@ -15,6 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include=".clang-format" />
+    <None Include="README.md" />
+    <None Include="spec.md" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="Hamada.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
