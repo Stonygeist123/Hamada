@@ -50,6 +50,10 @@ namespace hamada::diagnostics {
 		std::cout << logLevelColor(level) << messageStream.str() << logLevelReset();
 	}
 
+	Diagnostic::Diagnostic(LogLevel level, std::string message, std::string type, std::string filePath, TextSpan span,
+		std::string source) noexcept
+		: level(level), message(message), type(type), filePath(filePath), span(span), source(source) {}
+
 	void DiagnosticBag::printAll() {
 		for (Diagnostic& diagnostic : *this)
 		{

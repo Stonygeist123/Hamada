@@ -16,20 +16,18 @@ namespace hamada::diagnostics {
 		Debug
 	};
 
-	inline std::string logLevelColor(const LogLevel& level) noexcept;
+	inline std::string logLevelColor(const LogLevel&) noexcept;
 
 	inline std::string logLevelReset() noexcept;
 
-	inline std::string logLevelText(const LogLevel& level) noexcept;
+	inline std::string logLevelText(const LogLevel&) noexcept;
 
 	struct Diagnostic
 	{
 		std::string message, type, filePath, source;
 		LogLevel level;
 		TextSpan span;
-		Diagnostic(LogLevel level, std::string message, std::string type, std::string filePath, TextSpan span,
-			std::string source) noexcept
-			: level(level), message(message), type(type), filePath(filePath), span(span), source(source) {}
+		Diagnostic(LogLevel, std::string, std::string, std::string, TextSpan, std::string) noexcept;
 
 		void print() const;
 	};
