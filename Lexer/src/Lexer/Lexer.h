@@ -1,6 +1,6 @@
 #pragma once
-#include "Utility.h"
-#include "Diagnostics.h"
+#include "Utility/Utility.h"
+#include "Diagnostics/Diagnostics.h"
 using namespace hamada::utility;
 using namespace hamada::diagnostics;
 

@@ -1,8 +1,8 @@
 #include <iostream>
 #include <algorithm>
-#include "Lexer.h"
-#include "Diagnostics.h"
 #include <Windows.h>
+#include "Diagnostics/Diagnostics.h"
+#include "Lexer/Lexer.h"
 
 int main() {
 	while (true)
