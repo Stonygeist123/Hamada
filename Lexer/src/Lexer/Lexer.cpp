@@ -10,7 +10,7 @@ namespace hamada::lexer {
 		return std::isdigit((unsigned char)c) || c == '.' || c == 'e' || c == '_' || c == '-';
 	}
 
-	std::vector<Token>& Lexer::lex() {
+	std::vector<Token> Lexer::lex() {
 		while (!isAtEnd())
 		{
 			start = current;

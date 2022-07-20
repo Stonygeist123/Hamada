@@ -81,8 +81,8 @@ namespace hamada::utility {
 		Do,
 		Else,
 		For,
-		Foreach,
 		Fn,
+		False,
 		If,
 		In,
 		Private,
@@ -92,6 +92,7 @@ namespace hamada::utility {
 		Static,
 		Struct,
 		Switch,
+		True,
 		While
 	};
 
@@ -214,8 +215,6 @@ namespace hamada::utility {
 				return "else";
 			case KeywordKind::For:
 				return "for";
-			case KeywordKind::Foreach:
-				return "foreach";
 			case KeywordKind::Fn:
 				return "fn";
 			case KeywordKind::If:

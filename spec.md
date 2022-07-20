@@ -39,8 +39,9 @@ General:
 Expresion is syntax which yields a value.
 
 General:
-<call> | <lambda> | <int> | <float> | <string> | <bool>
-| <array> | <map> | <binop> | <unop> | <ternary> | <assign>
+<call> | <int> | <float> | <string> | <bool> | <arr>
+| <map> | <binop> | <unop> | <ternary> | <assign>
+| <range>
 
 ```
 
@@ -57,11 +58,15 @@ General:
 
 ```
 
-<identifier> = <expr>
+Usage:
+x = 2
+
+General:
+<identifier | index> = <expr>
 
 ```
 
-## Array expr (array)
+## Array literal (array)
 
 ```
 
@@ -69,9 +74,27 @@ General:
 
 ```
 
-## Map expr (map)
+## Index signature (index)
 
 ```
+
+With array:
+<arr>[<int | float>]
+
+With map:
+<map>[expr]
+
+```
+
+## Map literal (map)
+
+```
+
+Usage:
+{
+	"x": 2,
+	"y": "Hi"
+}
 
 General:
 {[<expr>: <expr>][,<expr>: <expr>]...[,]}
@@ -169,21 +192,21 @@ General
 Usage:
 -f
 ~i
-!b
+(int)b
 
 General:
 [
   -
   | ~
   | !
-  | (Type)
+  | (<type>)
   <expr>
 ] | [
   <expr>
   '[' <expr> ']'
   | ++
   | --
-  | as Type
+  | as <type>
 ]
 ```
 
@@ -195,6 +218,28 @@ x ? y : z
 
 General:
 <expr> ? <expr> : <expr>
+```
+
+## Type (type)
+
+```
+
+General:
+<identifier>
+
+```
+
+## Range (range)
+
+```
+
+Usage:
+1..100
+5..=10
+
+General:
+<int>..[=]<int>
+
 ```
 
 ## Statement (stmt)
@@ -222,18 +267,22 @@ General:
 
 Infered type:
 var x = <expr>
+
 Explicit type:
-var x: Type = <expr>
+var x: <type> = <expr>
+
 Mutable declaration:
 var x = <expr>
+
 Constant decleration:
 const x = <expr>
 
 General:
 Using var:
-var <id>[: Type] = <expr>
+var <id>[: <type>] = <expr>
+
 Using const:
-const <id>[: Type] = <expr>
+const <id>[: <type>] = <expr>
 
 ```
 
@@ -242,6 +291,15 @@ const <id>[: Type] = <expr>
 
 ```
 
+Usage:
+Without else:
+if x == 1 { }
+
+With else:
+if x == 1 { }
+else { }
+
+General:
 Without else:
 if <expr> <scope>
 
@@ -256,6 +314,14 @@ else <scope>
 
 ```
 
+Usage:
+With condition:
+while !done { }
+
+Without condition:
+while { }
+
+General:
 With condition:
 while <expr> <scope>
 
@@ -264,11 +330,38 @@ while <scope>
 
 ```
 
+
+## Do-while statements (while)
+
+```
+
+Usage:
+do { }
+while x > 2e-3
+
+General:
+do <scope> while <expr>
+
+```
+
 ## For-Range statements (for)
 
 ```
 
-for [const] <identifier>
+Usage:
+Standart:
+for const i = 0; i < 100; ++i { }
+
+Range based:
+for const i in 1..100 { }
+
+General:
+Standart for-loop:
+for <decl | assign>; <expr>; <assign> <scope>
+
+Range based for-loop:
+for <const | var> <identifier> : <arr | range> <scope>
+for <const | var> <identifier> in <arr | range> <scope>
 
 ```
 
@@ -276,11 +369,18 @@ for [const] <identifier>
 
 ```
 
+Usage:
+Without const:
+(name: string, n: int)
+
+With const:
+(const name: string, n: int)
+
 General:
 Typed:
-([[const] <id>: Type,]...)
+([[const] <id>: <type>,]...)
 Untyped:
-([[const] <id>[: Type],]...)
+([[const] <id>[: <type>,]...)
 
 ```
 
@@ -288,7 +388,14 @@ Untyped:
 
 ```
 
+Usage:
+Without parameter lists:
+fn x -> bool { }
+
+With parameter list:
+fn x(const name: string) -> void { }
+
 General:
-fn <identifier> [params] -> <Type> <scope>
+fn <identifier> [params] -> <type> <scope>
 
 ```

@@ -13,18 +13,18 @@ namespace hamada::lexer {
 		diagnostics::DiagnosticBag diagnostics{};
 		std::string source, filePath;
 		Lexer(std::string, std::string) noexcept;
-		std::vector<Token>& lex();
+		std::vector<Token> lex();
 
 	private:
 		size_t line = 1, lineStart = 1, current = 0, start = 0, column = 0;
 		std::map<std::string, KeywordKind> keywords{ { "var", KeywordKind::Var }, { "break", KeywordKind::Break },
-			{ "case", KeywordKind::Case }, { "const", KeywordKind::Const }, { "continue", KeywordKind::Continue },
-			{ "default", KeywordKind::Default }, { "do", KeywordKind::Do }, { "else", KeywordKind::Else },
-			{ "fn", KeywordKind::Fn }, { "for", KeywordKind::For }, { "foreach", KeywordKind::Foreach },
-			{ "if", KeywordKind::If }, { "in", KeywordKind::In }, { "private", KeywordKind::Private },
-			{ "protected", KeywordKind::Protected }, { "public", KeywordKind::Public },
-			{ "return", KeywordKind::Return }, { "static", KeywordKind::Static }, { "switch", KeywordKind::Switch },
-			{ "while", KeywordKind::While } };
+			{ "case", KeywordKind::Case }, { "class", KeywordKind::Class }, { "const", KeywordKind::Const },
+			{ "continue", KeywordKind::Continue }, { "default", KeywordKind::Default }, { "do", KeywordKind::Do },
+			{ "else", KeywordKind::Else }, { "fn", KeywordKind::Fn }, { "for", KeywordKind::For },
+			{ "false", KeywordKind::False }, { "if", KeywordKind::If }, { "in", KeywordKind::In },
+			{ "private", KeywordKind::Private }, { "protected", KeywordKind::Protected },
+			{ "public", KeywordKind::Public }, { "return", KeywordKind::Return }, { "static", KeywordKind::Static },
+			{ "switch", KeywordKind::Switch }, { "true", KeywordKind::True }, { "while", KeywordKind::While } };
 
 		std::map<std::string, OperatorKind> operators{ { "+", OperatorKind::Plus }, { "-", OperatorKind::Minus },
 			{ "*", OperatorKind::Star }, { "/", OperatorKind::Slash }, { "%", OperatorKind::Mod },

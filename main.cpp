@@ -17,7 +17,7 @@ int main() {
 			continue;
 
 		hamada::lexer::Lexer lexer(source, "<stdin>");
-		std::vector<Token>& tokens = lexer.lex();
+		std::vector<Token> tokens = lexer.lex();
 
 		if (lexer.hadError)
 			lexer.diagnostics.printAll();

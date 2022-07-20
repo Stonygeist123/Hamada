@@ -9,6 +9,8 @@ else()
   set(CMAKE_CXX_FLAGS "-Wall -g -O0")
 endif()
 
+include(CTest)
+enable_testing(true)
 add_subdirectory(Lexer)
 add_subdirectory(Utility)
 add_subdirectory(Diagnostics)
